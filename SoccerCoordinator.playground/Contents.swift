@@ -60,7 +60,9 @@ let players: [[String: Any]] =
 /// Store number of players & teams for easy access
 let totalPlayers = players.count
 
-/// Order the players by experience, then by height
+/// To comply with the extra requirements of creating
+/// balanced teams (within 1.5 inches of other teams), 
+/// order the players by experience then by height.
 let playersSorted = players.sorted {
     item1, item2 in
         let exp1 = item1["experienced"] as! Bool
@@ -68,7 +70,7 @@ let playersSorted = players.sorted {
         let hgt1 = item1["height"] as! Int
         let hgt2 = item2["height"] as! Int
 
-    // Sort by 'experienced' first:
+    // Sort by experience first:
     // If both sides are different, return the left-hand side
     // so that an unexperienced one would return false and gets
     // sorted
@@ -108,11 +110,6 @@ func average(forTeam team: Int) -> Double {
 /// Output averages of the teams
 for i in 0..<numTeams {
     print("Team \(teamInfo[i].0) average is \(average(forTeam: i))")
-}
-
-/// Todo: adjust players if averages of team are not within 1.5 inches of other teams
-func balanceTeams() {
-    
 }
 
 /// Create letters to all players & their guardians
